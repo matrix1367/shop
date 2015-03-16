@@ -69,12 +69,13 @@ class DB {
 		  $this->query('CREATE TABLE shopList  (shopListID int NOT NULL AUTO_INCREMENT ,name char(30), companyID int, usersID int, date DATE, status int, PRIMARY KEY(shopListID))');
 		  $this->query('CREATE TABLE shop (shopID int NOT NULL AUTO_INCREMENT, shopListID int, productID int, price REAL, amount REAL,  PRIMARY KEY(shopID))');
 
-
+		  $this->query('CREATE TABLE 	component (componentshopID int NOT NULL AUTO_INCREMENT, name char(30), description text, Eno char(10), ADI REAL, risk int,  PRIMARY KEY (componentshopID))');
+		  $this->query('CREATE TABLE 	productComponent (productComponentID int NOT NULL AUTO_INCREMENT, product int, componentshopID int,  PRIMARY KEY (productComponentID))');
 
 		  Category::add("Nabia³", "uploads/Nabial.jpg" , "Produkty wyrobu mlecznego");
 		  Category::add("Warzywa", "uploads/warzywa.jpeg" , "Produkty rolnicze");
 
-		  Users::add('admin' , '', 1);
+		  Users::add('admin' , 'admin', 1);
  		  Users::add('zielony' , 'zielony', 2);
    }
 
@@ -87,6 +88,40 @@ class DB {
 
 }
 
+
+class Component {
+	public static function add($name, $description, $eno, $adi, $risk) {
+
+		DB::getInstance()->query("INSERT INTO  component (name , description, Eno, ADI, risk) VALUES ('".$name."', '".$description  ."', '".$eno ."', " .$adi.  " , ". $risk ." )");
+	}
+
+	public static function getColor($value, $maxValue) {
+	    $d =floor(($value / $maxValue)*255);
+		$r = $d;
+		$g = 255-$d;
+		$b =  0;
+
+		return 'rgb(' .$r .' , '. $g .' , '.$b .')';
+	}
+
+   public static function getListCategory() {
+	 	 $result = DB::getInstance()->query("SELECT * FROM component;");
+		 $lisView = "";
+		 if (!$result) return "";
+		 while($row = mysql_fetch_array($result)) {
+		 // if (!file_exists($row["link_image"])) $row["link_image"] = "images/default-no-image.png";
+		 	$lisView .=  '<li style= "background-color: ' . Component::getColor($row["risk"], 100) .' ";>';
+		   $lisView .= ' <span>';
+		   $lisView .= ' <h2>'.$row["name"].'</h2>';
+		  	$lisView .= ' <p><b>'.$row["Eno"] .', Dzienna dawka : ' .$row["ADI"].' mg/kg</b></p>';
+		   $lisView .= ' </span>';
+
+		 	$lisView .= '</li>';
+        }
+
+		  return $lisView;
+	 }
+}
 
 class ShopList {
 	public static function add($name, $company, $userID, $date) {
@@ -181,9 +216,12 @@ class Shop {
 	}
 
 	public static function getCountProduct($shopListID) {
-
-	  $result = mysql_fetch_array(DB::getInstance()->query("SELECT COUNT(*) as count FROM shop WHERE shopListID = " .$shopListID	));
+		$array = DB::getInstance()->query("SELECT COUNT(*) as count FROM shop WHERE shopListID = " .$shopListID	);
+		if (isset($array )) {
+	  		$result = mysql_fetch_array($array);
 		  return   $result['count'];
+		} else return 0;
+
 	 }
 
 	 public static function updateShop($companyID, $shopListID, $productID, $prince, $amount) {
@@ -272,7 +310,7 @@ class Product {
 		 while($row = mysql_fetch_array($result)) {
 		  if (!file_exists($row["link_image"])) $row["link_image"] = "images/default-no-image.png";
 		 	$lisView .= " <li>";
-		   $lisView .= ' <a href="product.php?Product='.$row["productID"].'">';
+		   $lisView .= ' <a href="productid.php?Product='.$row["productID"].'">';
 		   $lisView .=    ' <img style=" border-style: solid;border-width: 1px;border-color: #989898 ;margin-left: 3px; margin-top: 3px;" width="70px" height="70px" src="'.$row["link_image"].'">';
 		   $lisView .=    ' <h2>'.$row["name"].'</h2>';
 		  	$lisView .=     ' <p>'.$row["description"].'</p>';

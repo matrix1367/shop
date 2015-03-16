@@ -22,6 +22,7 @@ class View {
 		 //	$bar .= '<li><a href="shop.php">Zakupy</a></li>';
 			$bar .= '<li><a href="company.php">Firmy</a></li>';
 			$bar .= '<li><a href="category.php">Kategorie</a></li>';
+   		$bar .= '<li><a href="component.php">Sk³adniki</a></li>';
 			$bar .= '<li><a href="product.php">Produkty</a></li>';
 			$bar .= '</ul></div>';
 
