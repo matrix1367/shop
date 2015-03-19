@@ -174,8 +174,21 @@ class View {
 		return $listView;
 	 }
 
+	public function viewProduct($productID) {
+	 	$result = DB::getInstance()->query("SELECT * FROM product  WHERE  productID = " .$productID  );
+		$view = "";
+		if ($result) {
+			while($row = mysql_fetch_array($result)) {
+			if (!file_exists($row["link_image"])) $row["link_image"] = "images/default-no-image.png";
+			$view .= '<div><img src="'.$row["link_image"].'" /></div><div style="text-align: center;"><b>'.$row["name"]  .'</b></div><div><b>Opis:</b></div><div>'.$row["description"].'</div>';
+			$view .= '<div><b>Sk³adniki:</b></div>';
+			}
+		}
 
+		return $view;
+	}
 
 }
 ?>
-<span style="padding-left: 5px;"></span>
+<span style="padding-left: 5px;text-align: center;"></span>
+<img src="" width=""  />

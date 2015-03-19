@@ -26,11 +26,11 @@ transitional.dtd">
 <body>
 
 
-<div data-role="page" id="product_add">
+<div data-role="page" id="productID">
 		<div data-role="header">
 			<a href="logout.php" data-icon="user">Wyloguj</a>
 
-		<h1>Produkty - llllll</h1>
+		<h1>Produkt</h1>
 		</div>
 		<?php
 		if ($_SESSION["user"] != false) {
@@ -43,11 +43,15 @@ transitional.dtd">
 		</ul></div>
 		<div data-role="main" class="ui-content">
 		 <div>
-		 <a href="#">Edytuj</a>
+			  <?php
+		 	echo '		 <a href="product_edit.php?Product='.$_GET['Product'] .'" class="ui-btn">Edytuj</a>'
+			?>
 		 </div>
-		 <div>
-		 	<img src="" />
-		 </div>
+		 <?php
+		 if (isset($_GET['Product'])) {
+		  echo	View::getInstance()->viewProduct($_GET['Product']);
+		  }
+		 ?>
 		</div>
 </div>
 

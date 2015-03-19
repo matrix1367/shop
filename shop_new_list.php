@@ -61,7 +61,7 @@
 
 				<?php
 				  if ($_SESSION["user"] != false) {
-				  echo '	<label for="name">Nazwa:</label>'	;
+				   echo '	<label for="name">Nazwa:</label>'	;
 					echo '	<input type="text" name="name" id="name" value="Lista zakupów '	.ShopList::getCount() .'" >'	  ;
 
 				echo '

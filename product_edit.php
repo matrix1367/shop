@@ -1,4 +1,4 @@
-<?php
+ <?php
 	include_once("class/class_login.php");
 	include_once('class/class_view.php');
 	include_once('class/class_db.php');
@@ -9,6 +9,14 @@
 	if (!isset($_SESSION['user'])) {
 		$_SESSION["user"] = false;
 	}
+
+	if (isset($_GET['Product']) && isset($_GET['addComponent']) ) {
+		ProductComponent::add($_GET['Product'], $_GET['addComponent']);
+	}
+
+    if (isset($_GET['Product']) && isset($_GET['deleteComponent']) ) {
+		ProductComponent::delete($_GET['Product'], $_GET['deleteComponent']);
+	}
 ?>
 
 <?xml version="1.0" encoding="iso-8859-2"?>
@@ -18,29 +26,19 @@ transitional.dtd">
 	<head>
 	<meta http-equiv="Content-type" content="text/html; charset=iso-8859-2" />
 	<title>Wiem co jem</title>
-
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<!-- Include jQuery Mobile stylesheets -->
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
-
-	<!-- Include the jQuery library -->
 	<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
-
-	<!-- Include the jQuery Mobile library -->
 	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-
-
 </head>
 <body>
 
 
-
-<div data-role="page" id="category_add">
+<div data-role="page" id="product_edit">
 		<div data-role="header">
 			<a href="logout.php" data-icon="user">Wyloguj</a>
 
-		<h1>Składniki - dodaj</h1>
+		<h1>Produkt</h1>
 		</div>
 		<?php
 		if ($_SESSION["user"] != false) {
@@ -48,35 +46,31 @@ transitional.dtd">
 		}
 		?>
 		<div data-role="navbar"><ul>
-					<li><a href="component_add.php">Dodaj</a></li>
-			<li><a href="component.php">Lista</a></li>
+	  		<li><a href="product_add.php">Dodaj</a></li>
+			<li><a href="product.php">Lista</a></li>
 		</ul></div>
 		<div data-role="main" class="ui-content">
-			<form enctype="multipart/form-data" action="component.php" method="POST" data-ajax='false'>
-		  		<div class="ui-field-contain">
+		 <div>  </div>
+		  <ul data-role="listview" data-inset="true" id="list_component" style="margin: 0px;padding: 0px;">
+		   <li data-filtertext="fav"> Lista składników produktu</li>
+		  <?php
+				echo ProductComponent::getListProductComponent($_GET['Product']);
 
-				<label for="fullname">Nazwa:</label>
-				<input type="text" name="fullname" id="fullname">
+			 ?>
+		   </ul>
 
-				<label for="descryption">Opis:</label>
-				<input type="text" name="descryption" id="descryption">
+		  <ul data-role="listview" data-filter="true" data-inset="true" id="list_add_component">
+		    <li data-role="divider"> <li data-filtertext="fav"> Lista składników</li>
+			 <?php
 
-				<label for="code">Kod:</label>
-				<input type="text" name="code" id="code">
+			  echo	Component::getListCompanyForEdit($_GET['Product']);
 
-				<label for="adi">ADI:</label>
-				<input type="text" name="adi" id="adi">
-
-				<label for="risik">Szkodliwość:</label>
-				<input type="text" name="risik" id="risik">
-
-				</div>
-				<input type="submit" data-inline="true" value="Zapisz">
-			</form>
+			 ?>
+		 </ul>
 		</div>
 </div>
 
-
+<table border="0" ></table>
 
 </body>
 </html>
