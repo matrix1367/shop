@@ -93,6 +93,35 @@ class DB {
 }
 
 
+class ProductComponent {
+	public static function  add($product, $componentshopID) {
+			DB::getInstance()->query("INSERT INTO  productComponent (product, componentshopID ) VALUES  ( " .$product ."," .$componentshopID  ."  ) ");
+	}
+
+	public static function  delete($product, $componentshopID) {
+			DB::getInstance()->query("DELETE FROM  productComponent WHERE  product = '" .$product ."' AND componentshopID = '" .$componentshopID ."' ");
+	}
+
+	public static function getListProductComponent($productID) {
+		$result = DB::getInstance()->query("SELECT * FROM productComponent LEFT JOIN component ON component.componentshopID =  productComponent.componentshopID WHERE product = " .$productID);
+		 $lisView = "";
+		 if (!$result) return "";
+		 while($row = mysql_fetch_array($result)) {
+
+		 	$lisView .=  '<li><span><table border="0" width="100%" style="margin: 0px;padding: 0px;"><tr width="auto" style= "background-color: ' . Component::getColor($row["risk"], 100).' ">';
+		   $lisView .= '<td> ';
+		   $lisView .= ' <h2>'.$row["name"].'</h2>';
+		  	$lisView .= ' <p><b>'.$row["Eno"] .', Dzienna dawka : ' .$row["ADI"].' mg/kg</b></p></td><td width="30px">';
+			$lisView .= '<a href="product_edit.php?Product='.$productID.'&deleteComponent=' .$row["componentshopID"] .'" class="ui-btn ui-icon-delete ui-btn-icon-left">Usuñ</a>';
+		   $lisView .= ' </td></tr></table></span>';
+
+		 	$lisView .= '</li>';
+        }
+
+		  return $lisView;
+	}
+}
+
 class Component {
 	public static function add($name, $description, $eno, $adi, $risk) {
 
@@ -125,11 +154,32 @@ class Component {
 
 		  return $lisView;
 	 }
+
+	 public static function getListCompanyForEdit($productID) {
+	  	 $result = DB::getInstance()->query("SELECT * FROM component;");
+		 $lisView = "";
+		 if (!$result) return "";
+		 while($row = mysql_fetch_array($result)) {
+		 // if (!file_exists($row["link_image"])) $row["link_image"] = "images/default-no-image.png";
+		 	$lisView .=  '<li >';
+		   $lisView .= ' <span>';
+			$lisView .= ' <table width="100%"><tr><td width="auto">';
+		   $lisView .= ' <h2>'.$row["name"].'</h2>';
+		  	$lisView .= ' <p><b>'.$row["Eno"] .', Dzienna dawka : ' .$row["ADI"].' mg/kg</b></p></td><td width="30px">';
+			$lisView .= '<a href="product_edit.php?Product='.$productID.'&addComponent=' .$row["componentshopID"] .'" class="ui-btn ui-icon-plus ui-btn-icon-left">Dodaj</a>';
+		   $lisView .= ' </td></tr></table></span>';
+
+		 	$lisView .= '</li>';
+        }
+
+		  return $lisView;
+	 }
+
 }
 
 class ShopList {
 	public static function add($name, $company, $userID, $date) {
-	  	 	DB::getInstance()->query("INSERT INTO  shopList (name , companyID, usersID, date) VALUES ('".$name. "', ".$company .", " .$userID.  " , '". $date ."' )");
+	  	 	DB::getInstance()->query("INSERT INTO  shopList (name , companyID, usersID, date, status) VALUES ('".$name. "', ".$company .", " .$userID.  " , '". $date ."',0 )");
 	}
 
 	public static function getShopList($userID) {
