@@ -36,6 +36,19 @@ class View {
 		}
 		return 	$bar;
 	 }
+         
+         public function viewLogin() {
+             echo '       <form method="post" action="index.php">
+                        <div class="ui-field-contain">
+                          <label for="fullname">Login:</label>
+                          <input type="text" name="fullname" id="fullname">
+
+                          <label for="pass">Has³o:</label>
+                         <input type="password" name="pass" id="pass">
+                        </div>
+                        <input type="submit" data-inline="true" value="Zaloguj">
+                      </form>';
+         }
 
 	 public function checkAddProduct($listShopID, $productID) {
 	 	 $result = DB::getInstance()->query("SELECT * FROM shop WHERE shopListID = " .$listShopID);

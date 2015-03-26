@@ -27,7 +27,7 @@ class DB {
     $this->name = "shop";
     $this->user = "root";
     $this->host = "localhost";
-    $this->password = "";
+    $this->password = "dred1367";
 
     $this->open();
 
@@ -74,6 +74,9 @@ class DB {
 
 		  Category::add("Nabia³", "uploads/Nabial.jpg" , "Produkty wyrobu mlecznego");
 		  Category::add("Warzywa", "uploads/warzywa.jpeg" , "Produkty rolnicze");
+                  Category::add("Owoce", "uploads/owoce.jpeg" , "Produkty rolnicze");
+                  Category::add("Pieczywo", "uploads/pieczywo.jpeg" , "Produkty wypiekane");
+                  Category::add("Miêso", "uploads/mieso.jpeg" , "Produkty p[ochodzenia zwierzecego");
 
 		  Users::add('admin' , 'admin', 1);
  		  Users::add('zielony' , 'zielony', 2);
@@ -83,6 +86,7 @@ class DB {
 
    public function query($msg)
    {
+       echo '<script> console.log("query: ' .$msg . '"); </script>';
         return mysql_query($msg);
    }
 
@@ -301,7 +305,7 @@ class Product {
         DB::getInstance()->query($query);
 
 		  $result = mysql_fetch_array(DB::getInstance()->query("SELECT COUNT(*) as count FROM product;")	);
-		  return  1+ (int) $result['count'];
+		  return (int) $result['count'];
     }
 
 	public static function getListCategory() {
@@ -330,7 +334,7 @@ class Product {
 		if ($array_category[0] == 0 ) {
 			$query .= "select * FROM product;" ;
 		} else {
-	 		$query .= "select product.* , c.categoryID  from product join   (select  productcategory.productID, productcategory.categoryID FROM productcategory GROUP BY productcategory.productID) c on c.productID = product.productID where c.categoryID IN (".$str.")";
+	 		$query .= "select product.* , c.categoryID  from product join   (select  productCategory.productID, productCategory.categoryID FROM productCategory GROUP BY productCategory.productID) c on c.productID = product.productID where c.categoryID IN (".$str.")";
 		}
 
 

@@ -30,17 +30,9 @@
 	<h1>Zaloguj</h1>
 	</div>
   <div data-role="main" class="ui-content">
-       <form method="post" action="index.php">
-      <div class="ui-field-contain">
-        <label for="fullname">Login:</label>
-        <input type="text" name="fullname" id="fullname">
-
-        <label for="pass">Has³o:</label>
-       <input type="password" name="pass" id="pass">
-      </div>
-      <input type="submit" data-inline="true" value="Zaloguj">
-    </form>
-  </div>
+        <?php
+            View::getInstance()->viewLogin();
+        ?>
 </div><!-- /page -->
 
 </body>
