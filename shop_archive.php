@@ -99,7 +99,7 @@ table {
 
 		<div data-role="navbar"><ul>
 			<li><a href="shop_new_list.php">Nowa lista</a></li>
-			<li><a href="index.php">Lista zakup�w</a></li>
+			<li><a href="index.php">Lista zakupów</a></li>
 			<li><a href="shop_archive.php">Archiwum</a></li>
 		</ul></div>
 

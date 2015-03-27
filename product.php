@@ -133,7 +133,7 @@ if (isset($_GET['deleteProduct'])) {
                             <label for="category">Kategorie:</label>
                             <select name="category[]" id="category" multiple="multiple" data-native-menu="false">
                                 <option>Kategorie</option>
-                                <option value="0" >Wszystkie</option>
+                                <option value="0" selected>Wszystkie</option>
                                 <?php
                                 echo Category::getComboCategory();
                                 ?>

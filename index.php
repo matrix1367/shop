@@ -28,7 +28,7 @@ if (isset($_GET['archiveShopList'])) {
 }
 
 
-if (isset($_POST['listShopID'])) {
+if (isset($_POST['listShopID']) && isset($_POST['action']) && $_POST['action'] = "EditList") {
     Shop::deleteAllShopToIDList($_POST['listShopID']);
     if (isset($_POST['products'])) {
         $aProduct = $_POST['products'];
@@ -40,9 +40,8 @@ if (isset($_POST['listShopID'])) {
     }
 }
 
-if (isset($_POST['listShopID']) && isset($_POST['productsBuy']) && isset($_POST['amount']) && isset($_POST['price']) && isset($_POST['companyID'])) {
-
-
+if (isset($_POST['listShopID']) && isset($_POST['productsBuy']) && isset($_POST['amount']) && isset($_POST['price']) && isset($_POST['companyID'])) 
+{
     $aProduct = $_POST['productsBuy'];
     $aAmount = $_POST['amount'];
     $aPrice = $_POST['price'];

@@ -5,7 +5,7 @@
 
 	session_start();
 
-
+        $_SESSION["msg"] = "";
 	if (!isset($_SESSION['user'])) {
 		$_SESSION["user"] = false;
 	}
