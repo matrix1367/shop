@@ -18,7 +18,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-<meta http-equiv="content-type" content="text/html; charset=windows-1250" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<title>Wiem co jem</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
@@ -66,7 +66,7 @@
 				<input type="date" name="date" id="date" value="" />
 				 <label for="prince" class="input">Cena:</label>
 			 	<input type="text" name="prince" id="prince" value="0" />
-				 <label for="amount" class="input">Ilość:</label>
+				 <label for="amount" class="input">Iloďż˝ďż˝:</label>
 				<input type="text" name="amount" id="amount" value="1" />
 				</div>
 				<input type="submit" data-inline="true" value="Zapisz">

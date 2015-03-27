@@ -24,7 +24,7 @@
 transitional.dtd">
 <html>
 	<head>
-	<meta http-equiv="Content-type" content="text/html; charset=iso-8859-2" />
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<title>Wiem co jem</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
@@ -52,7 +52,7 @@ transitional.dtd">
 		<div data-role="main" class="ui-content">
 		 <div>  </div>
 		  <ul data-role="listview" data-inset="true" id="list_component" style="margin: 0px;padding: 0px;">
-		   <li data-filtertext="fav"> Lista składników produktu</li>
+		   <li data-filtertext="fav"> Lista skďż˝adnikďż˝w produktu</li>
 		  <?php
 				echo ProductComponent::getListProductComponent($_GET['Product']);
 
@@ -60,7 +60,7 @@ transitional.dtd">
 		   </ul>
 
 		  <ul data-role="listview" data-filter="true" data-inset="true" id="list_add_component">
-		    <li data-role="divider"> <li data-filtertext="fav"> Lista składników</li>
+		    <li data-role="divider"> <li data-filtertext="fav"> Lista skďż˝adnikďż˝w</li>
 			 <?php
 
 			  echo	Component::getListCompanyForEdit($_GET['Product']);

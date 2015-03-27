@@ -139,7 +139,7 @@ if (isset($_GET['deleteProduct'])) {
                                 ?>
                             </select>
                             <ul data-role="listview" data-inset="true" id="list_product">
-                                <li data-role="divider">Lista produkt�w</li>
+                                <li data-role="divider">Lista produktów</li>
 
                                 <?php
                                 echo Product::getListCategory();

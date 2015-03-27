@@ -5,6 +5,12 @@
  */
 
 
+
+$(document).bind("mobileinit", function () {
+    $.mobile.ajaxEnabled = false;
+});
+
+
 function changeCategory() {
     var list = document.getElementById("list_product");
     if (list != null) {
