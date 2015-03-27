@@ -39,7 +39,7 @@ transitional.dtd">
 		<div data-role="header">
 			<a href="logout.php" data-icon="user">Wyloguj</a>
 
-		<h1>Sk�adniki - dodaj</h1>
+		<h1>Składniki - dodaj</h1>
 		</div>
 		<?php
 		if ($_SESSION["user"] != false) {

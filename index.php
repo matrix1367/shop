@@ -41,7 +41,7 @@ if (isset($_POST['listShopID']) && isset($_POST['action']) && $_POST['action'] =
 }
 
 if (isset($_POST['listShopID']) && isset($_POST['productsBuy']) && isset($_POST['amount']) && isset($_POST['price']) && isset($_POST['companyID'])) 
-{
+{   
     $aProduct = $_POST['productsBuy'];
     $aAmount = $_POST['amount'];
     $aPrice = $_POST['price'];

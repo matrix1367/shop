@@ -52,7 +52,7 @@ transitional.dtd">
 		<div data-role="main" class="ui-content">
 		 <div>  </div>
 		  <ul data-role="listview" data-inset="true" id="list_component" style="margin: 0px;padding: 0px;">
-		   <li data-filtertext="fav"> Lista sk�adnik�w produktu</li>
+		   <li data-filtertext="fav"> Lista składników produktu</li>
 		  <?php
 				echo ProductComponent::getListProductComponent($_GET['Product']);
 
@@ -60,7 +60,7 @@ transitional.dtd">
 		   </ul>
 
 		  <ul data-role="listview" data-filter="true" data-inset="true" id="list_add_component">
-		    <li data-role="divider"> <li data-filtertext="fav"> Lista sk�adnik�w</li>
+		    <li data-role="divider"> <li data-filtertext="fav"> Lista składników</li>
 			 <?php
 
 			  echo	Component::getListCompanyForEdit($_GET['Product']);

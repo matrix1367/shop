@@ -119,7 +119,8 @@ class View {
 
         $result = DB::getInstance()->query("SELECT * FROM category;");
         $view = '<div>Lista: ' . ShopList::getNameList($listShopID) . '</div>';
-        $view .= '<form action="index.php"  data-ajax="false" method="post"><div data-role="collapsibleset">';
+        $view .= '<form action="index.php"  data-ajax="false" method="post"><div data-role="collapsibleset">';        
+        $view .= '<input type="hidden" name="action" value="EditList" />';
         $view .= '<input type="hidden" name="listShopID" value="' . $listShopID . '" />';
         while ($row = mysql_fetch_array($result)) {
             $view .= '<div data-role="collapsible">';

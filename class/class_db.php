@@ -63,7 +63,7 @@ class DB {
         $this->query('CREATE TABLE product (productID  int NOT NULL AUTO_INCREMENT, name char(30),  link_image char(255), description char(255), PRIMARY KEY(productID))');
         $this->query('CREATE TABLE category (categoryID  int NOT NULL AUTO_INCREMENT, name char(30),  link_image char(255), description char(255), PRIMARY KEY(categoryID))');
 		  $this->query('CREATE TABLE productCategory (productcategoryID int NOT NULL AUTO_INCREMENT, productID int, categoryID int, PRIMARY KEY(productcategoryID))');
-		  $this->query('CREATE TABLE company (companyID int NOT NULL AUTO_INCREMENT ,name char(30), nip char(30), zipCode char(30), city char(30), street char(30), nr_house int, PRIMARY KEY(companyID))');
+		  $this->query('CREATE TABLE company (companyID int NOT NULL AUTO_INCREMENT ,name char(30), nip char(30), zipCode char(30), city char(30), street char(30), nr_house char(10), PRIMARY KEY(companyID))');
 
 		  $this->query('CREATE TABLE shopList  (shopListID int NOT NULL AUTO_INCREMENT ,name char(30), companyID int, usersID int, date DATE, status int, PRIMARY KEY(shopListID))');
 		  $this->query('CREATE TABLE shop (shopID int NOT NULL AUTO_INCREMENT, shopListID int, productID int, price REAL, amount REAL,  PRIMARY KEY(shopID))');
@@ -208,7 +208,8 @@ class ShopList {
 	 }
 
 	 	public static function getShopListArchive($userID) {
-	 	 $result = DB::getInstance()->query("SELECT * FROM shopList WHERE status = 3 and usersID = " .$userID);
+	 	 //$result = DB::getInstance()->query("SELECT * FROM shopList WHERE status = 3 and usersID = " .$userID);
+                 $result = DB::getInstance()->query("SELECT  shopList.shopListID as shopListID , sum(shop.price * shop.amount) as priceAll , count(shop.price) as count, shopList.name, shopList.date FROM shopList  Left Join shop ON shopList.shopListID = shop.shopListID WHERE status = 3 and usersID = ".$userID  ." GROUP BY shopList.shopListID");
 		 $lisView = '<div data-role="main" class="ui-content">    <ul data-role="listview" data-inset="true">    <li data-role="divider">Archiwalne listy zakupów</li>';
 		 while($row = mysql_fetch_array($result)) {
 
@@ -216,7 +217,7 @@ class ShopList {
 		   $lisView .= ' <a href="shop_archive.php?ShopList='.$row["shopListID"].'">';
 
 		   $lisView .=    ' <h2>'.$row["name"].'</h2>';
-		  	$lisView .=     ' <p>Data: '.$row["date"] .' Produkty: '.Shop::getCountProduct($row["shopListID"]) .'</p>';
+		  	$lisView .=     ' <p>Data: '.$row["date"] .' Produkty: '.$row["count"]. ', Cena: ' .$row["priceAll"] .'</p>';
 
 
 		   $lisView .=    ' </a>';
@@ -291,7 +292,7 @@ class Users {
 
 class Company {
 	public static function add($name, $nip, $zipCode, $city, $street, $nrHouse) {
-	 $msg = "INSERT INTO `company` (name, nip, zipCode, city, street, nr_house) VALUES ('" .$name ."','" .$nip  ."' , '" .$zipCode ."','" .$city ."','" .$street ."'," .$nrHouse   .")";
+	 $msg = "INSERT INTO `company` (name, nip, zipCode, city, street, nr_house) VALUES ('" .$name ."','" .$nip  ."' , '" .$zipCode ."','" .$city ."','" .$street ."','" .$nrHouse   ."')";
 //	 echo $msg;
 	 	DB::getInstance()->query($msg);
 	}
@@ -312,7 +313,7 @@ class Company {
 		   $lisView .=    ' <h2>'.$row["name"].'</h2>';
 		  	$lisView .=     ' <p>NIP: '.$row["nip"] .', Ul. '    .$row["street"].' ' .$row["nr_house"].', ' .$row["zipCode"].' ' .$row["city"].'</p>';
 		   $lisView .=    ' </a>';
-		 	$lisView .=     ' <a href="company.php?deleteCompany='.$row["companyID"].'" data-transition="pop" data-icon="delete">Usu� Firme</a>';
+		 	$lisView .=     ' <a href="company.php?deleteCompany='.$row["companyID"].'" data-transition="pop" data-icon="delete">Usuń Firme</a>';
 		 	$lisView .= '</li>';
         }
 
