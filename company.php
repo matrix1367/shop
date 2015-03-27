@@ -12,8 +12,7 @@
 	}
 
 	if (  isset($_POST['name'])  && isset($_POST["nip"]) && isset($_POST["zipCode"]) && isset($_POST["city"]) && isset($_POST["street"]) && isset($_POST["nr_house"]) )  {
-		Company::add($_POST['name'], $_POST['nip'], $_POST['zipCode'], $_POST['city'], $_POST['street'], $_POST['nr_house']);
-		echo "ddd";
+		Company::add($_POST['name'], $_POST['nip'], $_POST['zipCode'], $_POST['city'], $_POST['street'], $_POST['nr_house']);		
 	}
 
 	if (isset($_GET['deleteCompany'])) {
@@ -61,8 +60,6 @@ transitional.dtd">
 
 		</div>
 </div>
-
-
 
 
 

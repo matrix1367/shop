@@ -65,6 +65,7 @@ if (isset($_POST['listShopID']) && isset($_POST['productsBuy']) && isset($_POST[
             <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
                 <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
                 <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+                <script src="tools.js" ></script>
                 </head>
                 <body>
                     <style>
@@ -90,6 +91,7 @@ if (isset($_POST['listShopID']) && isset($_POST['productsBuy']) && isset($_POST[
                             }
                             ?>
                             <h1>Wyszukaj</h1>
+                            <a href="product.php"  >aaa</a>
                         </div>
                         <?php
                         if ($_SESSION["user"] != false) {
