@@ -36,7 +36,7 @@ class View {
     }
 
     public function viewLogin() {
-        echo '       <form method="post" action="index.php">
+        echo '       <form method="post" action="index.php" data-ajax="false">
                         <div class="ui-field-contain">
                           <label for="fullname">Login:</label>
                           <input type="text" name="fullname" id="fullname">
@@ -119,7 +119,7 @@ class View {
 
         $result = DB::getInstance()->query("SELECT * FROM category;");
         $view = '<div>Lista: ' . ShopList::getNameList($listShopID) . '</div>';
-        $view .= '<form action="index.php" method="post"><div data-role="collapsibleset">';
+        $view .= '<form action="index.php"  data-ajax="false" method="post"><div data-role="collapsibleset">';
         $view .= '<input type="hidden" name="listShopID" value="' . $listShopID . '" />';
         while ($row = mysql_fetch_array($result)) {
             $view .= '<div data-role="collapsible">';
@@ -140,7 +140,7 @@ class View {
             }
             $view .= ' </div>';
         }
-        $view .= '</div><fieldset data-role="controlgroup" data-type="horizontal"><a href="index.php" class="ui-btn">Powrót</a><input type="submit" value="Zapisz listę" /></form>';
+        $view .= '</div><fieldset data-role="controlgroup" data-type="horizontal"><a href="index.php" class="ui-btn" data-ajax="false">Powrót</a><input type="submit" value="Zapisz listę" /></form>';
         return $view;
     }
 
@@ -170,7 +170,7 @@ class View {
     public function viewBuyList($ShopListID) {
 
         $result = DB::getInstance()->query("SELECT * FROM shop LEFT JOIN product ON product.productID = shop.productID  WHERE  shopListID = " . $ShopListID);
-        $listView = '<form action="index.php" method="post"><div>Lista produktów:</div>   <table   data-role="table" class="ui-responsive" id="myTable"><thead><tr><th></th><th></th><th></th></tr></thead> <tbody>';
+        $listView = '<form action="index.php" method="post" data-ajax="false"><div>Lista produktów:</div>   <table   data-role="table" class="ui-responsive" id="myTable"><thead><tr><th></th><th></th><th></th></tr></thead> <tbody>';
         $listView .= '<input type="hidden" name="listShopID" value="' . $ShopListID . '" />';
         $listView .= '	 <label for="companyID" class="select">Sklep:</label>';
         $listView .= ' <select name="companyID" id="companyID">';

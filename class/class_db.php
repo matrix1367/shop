@@ -187,7 +187,7 @@ class ShopList {
 		 while($row = mysql_fetch_array($result)) {
 		 // if (!file_exists($row["link_image"])) $row["link_image"] = "images/default-no-image.png";
 		 	$lisView .= " <li>";
-		   $lisView .= ' <a href="index.php?ShopList='.$row["shopListID"].'">';
+		   $lisView .= ' <a href="index.php?ShopList='.$row["shopListID"].'"    data-ajax="false" >';
 
 		   $lisView .=    ' <h2>'.$row["name"].'</h2>';
 		  	$lisView .=     ' <p>Data: '.$row["date"] .' Produkty: '.Shop::getCountProduct($row["shopListID"]) .'</p>';
