@@ -82,7 +82,7 @@
 transitional.dtd">
 <html>
 	<head>
-	<meta http-equiv="Content-type" content="text/html; charset=iso-8859-2" />
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<title>Wiem co jem</title>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -114,7 +114,7 @@ transitional.dtd">
 		<div data-role="main" class="ui-content">
 
 		    <ul data-role="listview" data-inset="true">
-		      <li data-role="divider">Kategorie produktów</li>
+		      <li data-role="divider">Kategorie produktĂłw</li>
 
 		        <?php
 				  	echo Category::getListCategory();

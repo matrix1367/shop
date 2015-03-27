@@ -59,7 +59,7 @@ if (isset($_POST['listShopID']) && isset($_POST['productsBuy']) && isset($_POST[
     transitional.dtd">
 <html>
     <head>
-        <meta http-equiv="Content-type" content="text/html; charset=iso-8859-2" />
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
         <title>Wiem co jem</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
             <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
@@ -82,45 +82,45 @@ if (isset($_POST['listShopID']) && isset($_POST['productsBuy']) && isset($_POST[
                     </style>
                     <div data-role="page" id="search">
                         <div data-role="header">
-<?php
-if ($_SESSION["user"] == false) {
-    echo '<a href="login.php" data-icon="user">Zaloguj</a>';
-} else {
-    echo '<a href="logout.php" data-icon="user">Wyloguj</a>';
-}
-?>
-                            <h1>Wyszukaj</h1>
-                        </div>
                             <?php
-                            if ($_SESSION["user"] != false) {
-                                echo View::getInstance()->getNavigationBars($_SESSION["user"]->getRole());
-                                echo '<div data-role="navbar"><ul>
-                                <li><a href="shop_new_list.php">Nowa lista</a></li>
-                                <li><a href="index.php">Lista zakupów</a></li>
-                                <li><a href="shop_archive.php">Archiwum</a></li>
-                               </ul></div>';
+                            if ($_SESSION["user"] == false) {
+                                echo '<a href="login.php" data-icon="user">Zaloguj</a>';
+                            } else {
+                                echo '<a href="logout.php" data-icon="user">Wyloguj</a>';
                             }
                             ?>
+                            <h1>Wyszukaj</h1>
+                        </div>
+                        <?php
+                        if ($_SESSION["user"] != false) {
+                            echo View::getInstance()->getNavigationBars($_SESSION["user"]->getRole());
+                            echo '<div data-role="navbar"><ul>
+                                <li><a href="shop_new_list.php">Nowa lista</a></li>
+                                <li><a href="index.php">Lista zakutĂłw</a></li>
+                                <li><a href="shop_archive.php">Archiwum</a></li>
+                               </ul></div>';
+                        }
+                        ?>
 
 
 
 
                         <div data-role="main" class="ui-content">
 
-<?php
-if (isset($_GET['ShopList'])) {
-    echo View::getInstance()->getGrupsProduct($_GET['ShopList']);
-} else if (isset($_GET['buyShopList'])) {
+                            <?php
+                            if (isset($_GET['ShopList'])) {
+                                echo View::getInstance()->getGrupsProduct($_GET['ShopList']);
+                            } else if (isset($_GET['buyShopList'])) {
 
-    echo View::getInstance()->viewBuyList($_GET['buyShopList']);
-} else {
-    if ($_SESSION["user"] != false) {
-        echo ShopList::getShopList($_SESSION["user"]->getId());
-    } else {
-        View::getInstance()->viewLogin();
-    }
-}
-?>
+                                echo View::getInstance()->viewBuyList($_GET['buyShopList']);
+                            } else {
+                                if ($_SESSION["user"] != false) {
+                                    echo ShopList::getShopList($_SESSION["user"]->getId());
+                                } else {
+                                    View::getInstance()->viewLogin();
+                                }
+                            }
+                            ?>
                             <br/><br/>
                             <div id="statystic"></div>
                             <ul data-role="listview" data-inset="true" id="list_product">
@@ -130,15 +130,15 @@ if (isset($_GET['ShopList'])) {
                     </div>
                     <script >
 
-                        $("input[type='checkbox']").bind("change", function (event, ui) {
+                        $("input[type='checkbox']").bind("change", function(event, ui) {
                             var list = document.getElementById("list_product");
                             if (list != null) {
                                 var value_list = new Array();
-                                $("input:checked").each(function () {
+                                $("input:checked").each(function() {
                                     value_list.push($(this).val());
                                 });
 
-                                $.post("statistickProduct.php", {value_array: (value_list), action: "minPrince"}, function (result) {
+                                $.post("statistickProduct.php", {value_array: (value_list), action: "minPrince"}, function(result) {
                                     $("#list_product").html(result);
                                     $("#list_product").listview("refresh");
                                     console.log(result);

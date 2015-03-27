@@ -21,7 +21,7 @@ class View {
             //	$bar .= '<li><a href="shop.php">Zakupy</a></li>';
             $bar .= '<li><a href="company.php">Firmy</a></li>';
             $bar .= '<li><a href="category.php">Kategorie</a></li>';
-            $bar .= '<li><a href="component.php">Sk³adniki</a></li>';
+            $bar .= '<li><a href="component.php">SkÅ‚adniki</a></li>';
             $bar .= '<li><a href="product.php">Produkty</a></li>';
             $bar .= '</ul></div>';
         } else if ($role == 2) {
@@ -41,7 +41,7 @@ class View {
                           <label for="fullname">Login:</label>
                           <input type="text" name="fullname" id="fullname">
 
-                          <label for="pass">Has³o:</label>
+                          <label for="pass">HasÅ‚o:</label>
                          <input type="password" name="pass" id="pass">
                         </div>
                         <input type="submit" data-inline="true" value="Zaloguj">
@@ -63,7 +63,7 @@ class View {
         $resultCompany = DB::getInstance()->query("SELECT company.*, shopList.name AS nameShop  FROM company LEFT JOIN shopList ON company.companyID = shopList.companyID WHERE shopList.shopListID = " . $listShopID);
         while ($rowCompany = mysql_fetch_array($resultCompany)) {
             $view = '<div> <b>' . $rowCompany['name'] . '</b>, Ul. ' . $rowCompany['street'] . ' ' . $rowCompany['nr_house'] . ', ' . $rowCompany['zipCode'] . ' ' . $rowCompany['city'] . '</div>';
-            $view .= ' <ul data-role="listview" data-inset="true" id="list_product">   <li data-role="divider">Lista produktów: <b>' . $rowCompany['nameShop'] . '</b> </li>';
+            $view .= ' <ul data-role="listview" data-inset="true" id="list_product">   <li data-role="divider">Lista produktÃ³w: <b>' . $rowCompany['nameShop'] . '</b> </li>';
         }
 
 
@@ -74,9 +74,9 @@ class View {
             $view .= ' <a href="product.php?Product=' . $row["productID"] . '">';
             $view .= ' <img style=" border-style: solid;border-width: 1px;border-color: #989898 ;margin-left: 3px; margin-top: 3px;" width="70px" height="70px" src="' . $row["link_image"] . '">';
             $view .= ' <h2>' . $row["name"] . '</h2>';
-            $view .= ' <p> Iloœæ: ' . $row["amount"] . ' Cena: ' . $row["price"] . ' z³</p>';
+            $view .= ' <p> IloÅ›Ä‡: ' . $row["amount"] . ' Cena: ' . $row["price"] . ' zÅ‚</p>';
             $view .= ' </a>';
-            //	 	$view .=     ' <a href="product.php?deleteProduct='.$row["productID"].'" data-transition="pop" data-icon="delete">Usuñ produkt</a>';
+            //	 	$view .=     ' <a href="product.php?deleteProduct='.$row["productID"].'" data-transition="pop" data-icon="delete">Usuï¿½ produkt</a>';
             $view .= '</li>';
         }
         $view .= "</ul></div>";
@@ -109,7 +109,7 @@ class View {
 
       $view .= ' </div>';
       }
-      $view .= '</div><a href="schop_archive.php" class="ui-btn">Powrót</a></form>';
+      $view .= '</div><a href="schop_archive.php" class="ui-btn">Powrï¿½t</a></form>';
       return $view;
       }
      */
@@ -126,20 +126,21 @@ class View {
             $view .= '<h1>' . $row["name"] . '</h1>';
             $resultProduct = Product::getProductFormCategory($row["categoryID"]);
             $view .= '<fieldset data-role="controlgroup" data-type="horizontal">';
-            $i = 1;
-            while ($rowProduct = mysql_fetch_array($resultProduct)) {
-                if ($this->checkAddProduct($listShopID, $rowProduct["productID"])) {
-                    $view .= '<input type="checkbox" name="products[]" value="' . $rowProduct["productID"] . '" id="check' . $row["categoryID"] . $i . '" checked> <label for="check' . $row["categoryID"] . $i . '"> <img  width="60px" height="60px" src="' . $rowProduct["link_image"] . '" /> </label>';
-                } else {
-                    $view .= '<input type="checkbox" name="products[]" value="' . $rowProduct["productID"] . '" id="check' . $row["categoryID"] . $i . '"> <label for="check' . $row["categoryID"] . $i . '"> <img  width="60px" height="60px" src="' . $rowProduct["link_image"] . '" /> </label>';
+            if($resultProduct) {
+                $i = 1;
+                while ($rowProduct = mysql_fetch_array($resultProduct)) {
+                    if ($this->checkAddProduct($listShopID, $rowProduct["productID"])) {
+                        $view .= '<input type="checkbox" name="products[]" value="' . $rowProduct["productID"] . '" id="check' . $row["categoryID"] . $i . '" checked> <label for="check' . $row["categoryID"] . $i . '"> <img  width="60px" height="60px" src="' . $rowProduct["link_image"] . '" /> </label>';
+                    } else {
+                        $view .= '<input type="checkbox" name="products[]" value="' . $rowProduct["productID"] . '" id="check' . $row["categoryID"] . $i . '"> <label for="check' . $row["categoryID"] . $i . '"> <img  width="60px" height="60px" src="' . $rowProduct["link_image"] . '" /> </label>';
+                    }
+
+                    $i += 1;
                 }
-
-                $i += 1;
             }
-
             $view .= ' </div>';
         }
-        $view .= '</div><fieldset data-role="controlgroup" data-type="horizontal"><a href="index.php" class="ui-btn">Powrót</a><input type="submit" value="Zapisz listê" /></form>';
+        $view .= '</div><fieldset data-role="controlgroup" data-type="horizontal"><a href="index.php" class="ui-btn">PowrÃ³t</a><input type="submit" value="Zapisz listÄ™" /></form>';
         return $view;
     }
 
@@ -169,7 +170,7 @@ class View {
     public function viewBuyList($ShopListID) {
 
         $result = DB::getInstance()->query("SELECT * FROM shop LEFT JOIN product ON product.productID = shop.productID  WHERE  shopListID = " . $ShopListID);
-        $listView = '<form action="index.php" method="post"><div>Lista produktów:</div>   <table   data-role="table" class="ui-responsive" id="myTable"><thead><tr><th></th><th></th><th></th></tr></thead> <tbody>';
+        $listView = '<form action="index.php" method="post"><div>Lista produktÃ³w:</div>   <table   data-role="table" class="ui-responsive" id="myTable"><thead><tr><th></th><th></th><th></th></tr></thead> <tbody>';
         $listView .= '<input type="hidden" name="listShopID" value="' . $ShopListID . '" />';
         $listView .= '	 <label for="companyID" class="select">Sklep:</label>';
         $listView .= ' <select name="companyID" id="companyID">';
@@ -181,11 +182,11 @@ class View {
             $listView .=' <tr>';
             $listView .= '<td><input type="checkbox" name="productsBuy[]" value="' . $row["productID"] . '" id="check' . $row["productID"] . '" > <label for="check' . $row["productID"] . '">
 		  <img  width="60px" height="60px" src="' . $row["link_image"] . '" /></td> </label>';
-            $listView .= ' <td> <label for="amount">Iloœæ: </label> <input  type="text" name="amount[]" id="amount"> </td>  ';
+            $listView .= ' <td> <label for="amount">IloÅ›Ä‡: </label> <input  type="text" name="amount[]" id="amount"> </td>  ';
             $listView .= ' <td><label for="price">Cena: </label> <input  type="text" name="price[]" id="price"></td></tr> ';
         }
         $listView .= '    </tbody></table>';
-        $listView .=' <input type="submit" value="Zakoñcz zakupy" /></form>';
+        $listView .=' <input type="submit" value="ZakoÅ„cz zakupy" /></form>';
         //	 $listView .= ' </ul></div>';
         return $listView;
     }
@@ -198,7 +199,7 @@ class View {
                 if (!file_exists($row["link_image"]))
                     $row["link_image"] = "images/default-no-image.png";
                 $view .= '<div><img src="' . $row["link_image"] . '" /></div><div style="text-align: center;"><b>' . $row["name"] . '</b></div><div><b>Opis:</b></div><div>' . $row["description"] . '</div>';
-                $view .= '<div><b>Sk³adniki:</b></div>';
+                $view .= '<div><b>SkÅ‚adniki:</b></div>';
             }
         }
 

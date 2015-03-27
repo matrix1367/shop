@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @author dragon
  * @copyright 2015
@@ -58,7 +57,7 @@ class DB {
 
    public function create() {
        // mysql_create_db($this->name);
-        $this->query('CREATE DATABASE ' . $this->name);
+        $this->query('CREATE DATABASE ' . $this->name ." DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;");
         mysql_select_db($this->name, $this->link) or die('Could not select: ' . mysql_error());
 		  $this->query('CREATE TABLE users (usersID int NOT NULL AUTO_INCREMENT , name char(30) , password char(30), role int,  PRIMARY KEY(usersID)  )');
         $this->query('CREATE TABLE product (productID  int NOT NULL AUTO_INCREMENT, name char(30),  link_image char(255), description char(255), PRIMARY KEY(productID))');
@@ -72,11 +71,11 @@ class DB {
 		  $this->query('CREATE TABLE 	component (componentshopID int NOT NULL AUTO_INCREMENT, name char(30), description text, Eno char(10), ADI REAL, risk int,  PRIMARY KEY (componentshopID))');
 		  $this->query('CREATE TABLE 	productComponent (productComponentID int NOT NULL AUTO_INCREMENT, product int, componentshopID int,  PRIMARY KEY (productComponentID))');
 
-		  Category::add("Nabia³", "uploads/Nabial.jpg" , "Produkty wyrobu mlecznego");
+		  Category::add("NabiaÅ‚", "uploads/Nabial.jpg" , "Produkty wyrobu mlecznego");
 		  Category::add("Warzywa", "uploads/warzywa.jpeg" , "Produkty rolnicze");
                   Category::add("Owoce", "uploads/owoce.jpeg" , "Produkty rolnicze");
                   Category::add("Pieczywo", "uploads/pieczywo.jpeg" , "Produkty wypiekane");
-                  Category::add("Miêso", "uploads/mieso.jpeg" , "Produkty p[ochodzenia zwierzecego");
+                  Category::add("MiÄ™so", "uploads/mieso.jpeg" , "Produkty pochodzenia zwierzecego");
 
 		  Users::add('admin' , 'admin', 1);
  		  Users::add('zielony' , 'zielony', 2);
@@ -112,7 +111,7 @@ class ProductComponent {
 		   $lisView .= '<td> ';
 		   $lisView .= ' <h2>'.$row["name"].'</h2>';
 		  	$lisView .= ' <p><b>'.$row["Eno"] .', Dzienna dawka : ' .$row["ADI"].' mg/kg</b></p></td><td width="30px">';
-			$lisView .= '<a href="product_edit.php?Product='.$productID.'&deleteComponent=' .$row["componentshopID"] .'" class="ui-btn ui-icon-delete ui-btn-icon-left">Usuñ</a>';
+			$lisView .= '<a href="product_edit.php?Product='.$productID.'&deleteComponent=' .$row["componentshopID"] .'" class="ui-btn ui-icon-delete ui-btn-icon-left">Usuï¿½</a>';
 		   $lisView .= ' </td></tr></table></span>';
 
 		 	$lisView .= '</li>';
@@ -184,7 +183,7 @@ class ShopList {
 
 	public static function getShopList($userID) {
 	 	 $result = DB::getInstance()->query("SELECT * FROM shopList WHERE status < 2 and usersID = ".$userID);
-		 $lisView = '<div data-role="main" class="ui-content">    <ul data-role="listview" data-inset="true">    <li data-role="divider">Listy zakupów</li>';
+		 $lisView = '<div data-role="main" class="ui-content">    <ul data-role="listview" data-inset="true">    <li data-role="divider">Listy zakupÃ³w</li>';
 		 while($row = mysql_fetch_array($result)) {
 		 // if (!file_exists($row["link_image"])) $row["link_image"] = "images/default-no-image.png";
 		 	$lisView .= " <li>";
@@ -199,7 +198,7 @@ class ShopList {
 			if ($row['status'] == 0) {
 					$lisView .= ' <a href="index.php?buyShopList='.$row["shopListID"].'" data-transition="pop" data-icon="tag">Rozpocznij zakupy</a>';
 			} else if ($row['status'] == 1) {
-			 	$lisView .= ' <a href="index.php?archiveShopList='.$row["shopListID"].'" data-transition="pop" data-icon="edit">Archwizuj listê zakupów</a>';
+			 	$lisView .= ' <a href="index.php?archiveShopList='.$row["shopListID"].'" data-transition="pop" data-icon="edit">Archwizuj listÄ™ zakupÃ³w</a>';
 			}
 
 		 	$lisView .= '</li>';
@@ -210,7 +209,7 @@ class ShopList {
 
 	 	public static function getShopListArchive($userID) {
 	 	 $result = DB::getInstance()->query("SELECT * FROM shopList WHERE status = 3 and usersID = " .$userID);
-		 $lisView = '<div data-role="main" class="ui-content">    <ul data-role="listview" data-inset="true">    <li data-role="divider">Archiwalne listy zakupów</li>';
+		 $lisView = '<div data-role="main" class="ui-content">    <ul data-role="listview" data-inset="true">    <li data-role="divider">Archiwalne listy zakupÃ³w</li>';
 		 while($row = mysql_fetch_array($result)) {
 
 		 	$lisView .= " <li>";
@@ -225,7 +224,7 @@ class ShopList {
 			if ($row['status'] == 0) {
 					$lisView .= ' <a href="index.php?buyShopList='.$row["shopListID"].'" data-transition="pop" data-icon="tag">Rozpocznij zakupy</a>';
 			} else if ($row['status'] == 1) {
-			 	$lisView .= ' <a href="index.php?archiveShopList='.$row["shopListID"].'" data-transition="pop" data-icon="edit">Archwizuj listê zakupów</a>';
+			 	$lisView .= ' <a href="index.php?archiveShopList='.$row["shopListID"].'" data-transition="pop" data-icon="edit">Archwizuj listÄ™ zakupÃ³w</a>';
 			}
 
 		 	$lisView .= '</li>';
@@ -313,7 +312,7 @@ class Company {
 		   $lisView .=    ' <h2>'.$row["name"].'</h2>';
 		  	$lisView .=     ' <p>NIP: '.$row["nip"] .', Ul. '    .$row["street"].' ' .$row["nr_house"].', ' .$row["zipCode"].' ' .$row["city"].'</p>';
 		   $lisView .=    ' </a>';
-		 	$lisView .=     ' <a href="company.php?deleteCompany='.$row["companyID"].'" data-transition="pop" data-icon="delete">Usuñ Firme</a>';
+		 	$lisView .=     ' <a href="company.php?deleteCompany='.$row["companyID"].'" data-transition="pop" data-icon="delete">Usuï¿½ Firme</a>';
 		 	$lisView .= '</li>';
         }
 
@@ -369,7 +368,7 @@ class Product {
 		   $lisView .=    ' <h2>'.$row["name"].'</h2>';
 		  	$lisView .=     ' <p>'.$row["description"].'</p>';
 		   $lisView .=    ' </a>';
-		 	$lisView .=     ' <a href="product.php?deleteProduct='.$row["productID"].'" data-transition="pop" data-icon="delete">Usuñ produkt</a>';
+		 	$lisView .=     ' <a href="product.php?deleteProduct='.$row["productID"].'" data-transition="pop" data-icon="delete">Usuï¿½ produkt</a>';
 		 	$lisView .= '</li>';
         }
 
@@ -398,7 +397,7 @@ class Product {
 		   $lisView .=    ' <h2>'.$row["name"].'</h2>';
 		  	$lisView .=     ' <p>'.$row["description"].'</p>';
 		   $lisView .=    ' </a>';
-		 	$lisView .=     ' <a href="product.php?deleteProduct='.$row["productID"].'" data-transition="pop" data-icon="delete">Usuñ produkt</a>';
+		 	$lisView .=     ' <a href="product.php?deleteProduct='.$row["productID"].'" data-transition="pop" data-icon="delete">Usuï¿½ produkt</a>';
 		 	$lisView .= '</li>';
         }
 
@@ -417,7 +416,7 @@ class Product {
 	 }
 
 	 public static function getProductFormCategory($categoryID) {
-	 	$query = "select product.* , c.categoryID  from product join   (select  productcategory.productID, productcategory.categoryID FROM productcategory GROUP BY productcategory.productID) c on c.productID = product.productID where c.categoryID IN (".$categoryID.")";
+	 	$query = "select product.* , c.categoryID  from product join   (select  productCategory.productID, productCategory.categoryID FROM productCategory GROUP BY productCategory.productID) c on c.productID = product.productID where c.categoryID IN (".$categoryID.")";
 		return DB::getInstance()->query($query);
 
 	 }
@@ -457,7 +456,7 @@ class Category
 		   $lisView .=    ' <h2>'.$row["name"].'</h2>';
 		  	$lisView .=     ' <p>'.$row["description"].'</p>';
 		   $lisView .=    ' </a>';
-		 	$lisView .=     ' <a href="category.php?deleteCategory='.$row["categoryID"].'" data-transition="pop" data-icon="delete">Usuñ kategoriê</a>';
+		 	$lisView .=     ' <a href="category.php?deleteCategory='.$row["categoryID"].'" data-transition="pop" data-icon="delete">Usuï¿½ kategoriï¿½</a>';
 		 	$lisView .= '</li>';
         }
 

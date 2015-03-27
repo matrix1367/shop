@@ -89,7 +89,7 @@ if (isset($_GET['deleteProduct'])) {
     transitional.dtd">
 <html>
     <head>
-        <meta http-equiv="Content-type" content="text/html; charset=iso-8859-2" />
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
         <title>Wiem co jem</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
             <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
@@ -139,7 +139,7 @@ if (isset($_GET['deleteProduct'])) {
                                 ?>
                             </select>
                             <ul data-role="listview" data-inset="true" id="list_product">
-                                <li data-role="divider">Lista produktów</li>
+                                <li data-role="divider">Lista produktďż˝w</li>
 
                                 <?php
                                 echo Product::getListCategory();
