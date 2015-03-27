@@ -129,9 +129,9 @@ if (isset($_POST['listShopID']) && isset($_POST['productsBuy']) && isset($_POST[
                         </div>
 
                     </div>
-                    <script >
+                    <script>
 
-                        $("input[type='checkbox']").bind("change", function(event, ui) {
+                        $("input[type='checkbox']").bind("change", function(event, ui) {                           
                             var list = document.getElementById("list_product");
                             if (list != null) {
                                 var value_list = new Array();
