@@ -18,7 +18,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-<meta http-equiv="content-type" content="text/html; charset=windows-1250" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<title>Wiem co jem</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
@@ -44,7 +44,7 @@
 
 		<div data-role="navbar"><ul>
 			<li><a href="shop_add.php">Nowa lista</a></li>
-			<li><a href="index.php">Lista zakupów</a></li>
+			<li><a href="index.php">Lista zakupĂłw</a></li>
 		</ul></div>
 
 		<div data-role="main" class="ui-content">
@@ -53,7 +53,7 @@
 		  		<div class="ui-field-contain">
 
 				<label for="fullname">Nazwa:</label>
-				<input type="text" name="fullname" id="fullname" value="lista zakupów" >
+				<input type="text" name="fullname" id="fullname" value="lista zakupĂłw" >
 
 
 

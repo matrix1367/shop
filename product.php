@@ -133,13 +133,13 @@ if (isset($_GET['deleteProduct'])) {
                             <label for="category">Kategorie:</label>
                             <select name="category[]" id="category" multiple="multiple" data-native-menu="false">
                                 <option>Kategorie</option>
-                                <option value="0" >Wszystkie</option>
+                                <option value="0" selected>Wszystkie</option>
                                 <?php
                                 echo Category::getComboCategory();
                                 ?>
                             </select>
                             <ul data-role="listview" data-inset="true" id="list_product">
-                                <li data-role="divider">Lista produkt�w</li>
+                                <li data-role="divider">Lista produktów</li>
 
                                 <?php
                                 echo Product::getListCategory();

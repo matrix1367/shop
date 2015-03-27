@@ -28,7 +28,7 @@ if (isset($_GET['archiveShopList'])) {
 }
 
 
-if (isset($_POST['listShopID'])) {
+if (isset($_POST['listShopID']) && isset($_POST['action']) && $_POST['action'] = "EditList") {
     Shop::deleteAllShopToIDList($_POST['listShopID']);
     if (isset($_POST['products'])) {
         $aProduct = $_POST['products'];
@@ -40,9 +40,8 @@ if (isset($_POST['listShopID'])) {
     }
 }
 
-if (isset($_POST['listShopID']) && isset($_POST['productsBuy']) && isset($_POST['amount']) && isset($_POST['price']) && isset($_POST['companyID'])) {
-
-
+if (isset($_POST['listShopID']) && isset($_POST['productsBuy']) && isset($_POST['amount']) && isset($_POST['price']) && isset($_POST['companyID'])) 
+{
     $aProduct = $_POST['productsBuy'];
     $aAmount = $_POST['amount'];
     $aPrice = $_POST['price'];
@@ -65,6 +64,7 @@ if (isset($_POST['listShopID']) && isset($_POST['productsBuy']) && isset($_POST[
             <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
                 <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
                 <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+                <script src="tools.js" ></script>
                 </head>
                 <body>
                     <style>
@@ -90,6 +90,7 @@ if (isset($_POST['listShopID']) && isset($_POST['productsBuy']) && isset($_POST[
                             }
                             ?>
                             <h1>Wyszukaj</h1>
+                            <a href="product.php"  >aaa</a>
                         </div>
                         <?php
                         if ($_SESSION["user"] != false) {
@@ -128,9 +129,9 @@ if (isset($_POST['listShopID']) && isset($_POST['productsBuy']) && isset($_POST[
                         </div>
 
                     </div>
-                    <script >
+                    <script>
 
-                        $("input[type='checkbox']").bind("change", function(event, ui) {
+                        $("input[type='checkbox']").bind("change", function(event, ui) {                           
                             var list = document.getElementById("list_product");
                             if (list != null) {
                                 var value_list = new Array();

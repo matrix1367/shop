@@ -15,7 +15,7 @@
 transitional.dtd">
 <html>
 	<head>
-	<meta http-equiv="Content-type" content="text/html; charset=iso-8859-2" />
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<title>Wiem co jem</title>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -39,7 +39,7 @@ transitional.dtd">
 		<div data-role="header">
 			<a href="logout.php" data-icon="user">Wyloguj</a>
 
-		<h1>Składniki - dodaj</h1>
+		<h1>Skďż˝adniki - dodaj</h1>
 		</div>
 		<?php
 		if ($_SESSION["user"] != false) {
@@ -66,7 +66,7 @@ transitional.dtd">
 				<label for="adi">ADI:</label>
 				<input type="text" name="adi" id="adi">
 
-				<label for="risik">Szkodliwość:</label>
+				<label for="risik">Szkodliwoďż˝ďż˝:</label>
 				<input type="text" name="risik" id="risik">
 
 				</div>

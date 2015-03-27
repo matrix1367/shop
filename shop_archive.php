@@ -61,7 +61,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-<meta http-equiv="content-type" content="text/html; charset=windows-1250" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<title>Wiem co jem</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
@@ -99,7 +99,7 @@ table {
 
 		<div data-role="navbar"><ul>
 			<li><a href="shop_new_list.php">Nowa lista</a></li>
-			<li><a href="index.php">Lista zakupów</a></li>
+			<li><a href="index.php">Lista zakupĂłw</a></li>
 			<li><a href="shop_archive.php">Archiwum</a></li>
 		</ul></div>
 
