@@ -89,8 +89,7 @@ if (isset($_POST['listShopID']) && isset($_POST['productsBuy']) && isset($_POST[
                                 echo '<a href="logout.php" data-icon="user">Wyloguj</a>';
                             }
                             ?>
-                            <h1>Wyszukaj</h1>
-                            <a href="product.php"  >aaa</a>
+                            <h1>Wyszukaj</h1>                            
                         </div>
                         <?php
                         if ($_SESSION["user"] != false) {
