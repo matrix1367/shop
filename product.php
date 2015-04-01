@@ -95,6 +95,7 @@ if (isset($_GET['deleteProduct'])) {
             <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
                 <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
                 <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+                <script src="tools.js" ></script>
                 </head>
                 <body>
                     <style>
@@ -149,28 +150,7 @@ if (isset($_GET['deleteProduct'])) {
                         </div>
                     </div>
 
-                    <script>
-                        
-                            $("#category").bind("change", function (event, ui) {
-
-                                list = document.getElementById("list_product");
-                                if (list != null) {
-                                    var value_list = new Array();
-                                    $("select option:selected").each(function () {
-                                        value_list.push($(this).val());
-                                    });
-
-                                    console.log(value_list);
-                                    $.post("filtrProduct.php", {value_array: (value_list)}, function (result) {
-                                        $("#list_product").html(result);
-                                        $("#list_product").listview("refresh");
-                                        console.log(result);
-                                    });
-
-                                }
-                            });
-                        
-                    </script>
+    
 
 
                 </body>

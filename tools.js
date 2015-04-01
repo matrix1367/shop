@@ -28,3 +28,24 @@ function changeCategory() {
 
     }
 }
+
+
+$("#category").bind("change", function (event, ui) {
+
+    list = document.getElementById("list_product");
+    if (list != null) {
+        var value_list = new Array();
+        $("select option:selected").each(function () {
+            value_list.push($(this).val());
+        });
+
+        console.log(value_list);
+        $.post("filtrProduct.php", {value_array: (value_list)}, function (result) {
+            $("#list_product").html(result);
+            $("#list_product").listview("refresh");
+            console.log(result);
+        });
+
+    }
+});
+                        
