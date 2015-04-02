@@ -21,8 +21,8 @@ function changeCategory() {
 
         console.log(value_list);
         $.post("filtrProduct.php", {value_array: (value_list)}, function (result) {
-            $("#list_product").html(result);
-            $("#list_product").listview("refresh");
+            $("#view_list_product").html(result);
+            $("#view_list_product").listview("refresh");
             console.log(result);
         });
 
@@ -30,7 +30,7 @@ function changeCategory() {
 }
 
 
-$("#category").bind("change", function (event, ui) {
+$("#category2").bind("change", function (event, ui) {
 
     list = document.getElementById("list_product");
     if (list != null) {
