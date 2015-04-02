@@ -49,7 +49,7 @@ if (isset($_POST['listShopID']) && isset($_POST['productsBuy']) && isset($_POST[
     $nProduct = count($_POST['productsBuy']);
 
     for ($i = 0; $i < $nProduct; $i++) {
-        Shop::updateShop($_POST['companyID'], $_POST['listShopID'], $aProduct[$i], $aAmount[$i], $aPrice[$i]);
+        Shop::updateShop($_POST['companyID'], $_POST['listShopID'], $aProduct[$i], $aPrice[$i], $aAmount[$i]);
     }
 }
 ?>
