@@ -15,10 +15,11 @@
 
 
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-
+    transitional.dtd">
 <html>
-	<head>
-<meta http-equiv="content-type" content="text/html; charset=windows-1250" />
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<title>Wiem co jem</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
@@ -32,7 +33,7 @@
 		<?php
 			if ($_SESSION["user"] == false) {
 				echo 	'<a href="login.php" data-icon="user">Zaloguj</a>';
-			} else echo	'<a href="logout.php" data-icon="user">Wyloguj</a>';
+                        } else { echo	'<a href="logout.php" data-icon="user">Wyloguj</a>'; }
 		?>
 		<h1>Zakupy - dodaj</h1>
 		</div>
@@ -44,7 +45,7 @@
 
 		<div data-role="navbar"><ul>
 			<li><a href="shop_new_list.php">Nowa lista</a></li>
-			<li><a href="index.php">Lista zakupów</a></li>
+			<li><a href="index.php">Lista zakupĂłw</a></li>
       	<li><a href="shop_archive.php">Archiwum</a></li>
 		</ul></div>
 
@@ -62,7 +63,7 @@
 				<?php
 				  if ($_SESSION["user"] != false) {
 				   echo '	<label for="name">Nazwa:</label>'	;
-					echo '	<input type="text" name="name" id="name" value="Lista zakupów '	.ShopList::getCount() .'" >'	  ;
+					echo '	<input type="text" name="name" id="name" value="Lista zakupĂłw '	.ShopList::getCount() .'" >'	  ;
 
 				echo '
 				<label for="dataShop" class="input">Data zakupu:</label>
@@ -70,7 +71,7 @@
 
 
 				</div>
-				<input type="submit" data-inline="true" value="dodaj listę">
+				<input type="submit" data-inline="true" value="Dodaj listÄ™">
 				';
 				}
 				?>

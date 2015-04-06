@@ -13,12 +13,11 @@
 ?>
 
 
-<?xml version="1.0" encoding="iso-8859-2"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-
 transitional.dtd">
 <html>
 	<head>
-	<meta http-equiv="Content-type" content="text/html; charset=iso-8859-2" />
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<title>Wiem co jem</title>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">

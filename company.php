@@ -12,8 +12,7 @@
 	}
 
 	if (  isset($_POST['name'])  && isset($_POST["nip"]) && isset($_POST["zipCode"]) && isset($_POST["city"]) && isset($_POST["street"]) && isset($_POST["nr_house"]) )  {
-		Company::add($_POST['name'], $_POST['nip'], $_POST['zipCode'], $_POST['city'], $_POST['street'], $_POST['nr_house']);
-		echo "ddd";
+		Company::add($_POST['name'], $_POST['nip'], $_POST['zipCode'], $_POST['city'], $_POST['street'], $_POST['nr_house']);		
 	}
 
 	if (isset($_GET['deleteCompany'])) {
@@ -22,17 +21,17 @@
 ?>
 
 
-<?xml version="1.0" encoding="iso-8859-2"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-
 transitional.dtd">
 <html>
 	<head>
-	<meta http-equiv="Content-type" content="text/html; charset=iso-8859-2" />
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<title>Wiem co jem</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
 	<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+ 
 </head>
 <body>
 
@@ -62,8 +61,6 @@ transitional.dtd">
 
 		</div>
 </div>
-
-
 
 
 

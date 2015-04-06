@@ -12,7 +12,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-<meta http-equiv="content-type" content="text/html; charset=windows-1250" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<title>Wiem co jem</title>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -39,7 +39,7 @@
 		</div>
 
 		<div data-role="main" class="ui-content">
-		Zostałeś pomyślnie wylogowany,    <a href="index.php">przejdź do strony głównej</a>
+		ZostaĹ‚eĹ› pomyĹ›lnie wylogowany,    <a href="index.php">przejdĹş do strony gĹ‚Ăłwnej</a>
 		</div>
 </div>
 
