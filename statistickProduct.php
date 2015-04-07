@@ -10,7 +10,7 @@ if (isset($_POST['value_array']) && isset($_POST['action']))
 		echo '<li data-role="divider">Lista produktów</li>';
 		$str = implode(',', $_POST['value_array']);
 		$lisView = "";
-                $query = "SELECT product.* , shop.price, MAX(shop.amount) as max_amount , company.name As shopName
+                $query = "SELECT product.* , shop.price, MAX(shop.amount) as max_amount , company.name As shopName ,company.city , company.street, company.nr_house
                             FROM shop join
                             (SELECT shop.productid , MIN(shop.price) as min_price FROM `shop` WHERE shop.productid IN (" .$str. ")  group by shop.productid) shop_prince_min
                                 ON shop.productid = shop_prince_min.productid and shop.price = shop_prince_min.min_price
@@ -26,7 +26,7 @@ if (isset($_POST['value_array']) && isset($_POST['action']))
 			   $lisView .= ' <span><table><tr>';
 			   $lisView .=    ' <td><img style=" border-style: solid;border-width: 1px;border-color: #989898 ;margin-left: 3px; margin-top: 3px;" width="70px" height="70px" src="'.$row["link_image"].'"></td>';
 			   $lisView .=    ' <td><h2 style=";margin-left: 5px;">'.$row["name"].'</h2>';
-			  	$lisView .=     ' <p style=";margin-left: 5px;"><a href="map.php">'.$row["shopName"].'</a></p>';
+			  	$lisView .=     ' <p style=";margin-left: 5px;"><a href="map.php?address=' . "Polska ".$row["city"]." ".$row["street"]." ".$row["nr_house"] .'" data-ajax="false">'.$row["shopName"].'</a></p>';
 				$lisView .= '<td><p style=";margin-left: 5px;"> Ilość: '.$row["max_amount"] .' </p><a href="#"><p style=";margin-left: 5px;"> Cena: '.$row["price"] .' zł</p></a></td>';
 			   $lisView .=    '</td></tr></table> </span>';
 			 	$lisView .= '</li>';
